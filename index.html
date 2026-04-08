@@ -307,8 +307,9 @@
   </div>
 
   <script>
-    // ====== konfigurace Formspree ======
-    const FORMSPREE_URL = 'https://formspree.io/f/mzdkwoek';
+    // ====== konfigurace PocketBase ======
+    const PB_URL        = 'https://bmvncm5lz3juzwdy.kunsmunt.top';
+    const PB_COLLECTION = 'EG_ANSWER';
 
     // ====== data a UI ======
     var answers = {};
@@ -368,9 +369,7 @@
             step.querySelector('.error-msg').textContent = 'Prosím odpovězte pro pokračování.';
             return;
           }
-          // Odeslat na Formspree a nabídnout CSV ke stažení, pak zobrazit výsledky
-          submitToFormspree(answers, labels);
-          //downloadCSVFromAnswers(answers, labels);
+          submitToPocketBase(answers, labels);
           showResults();
         });
       }
@@ -404,63 +403,44 @@
 
     updateProgress(0);
 
-    // ====== funkce: stáhnout CSV z odpovědí ======
-    function downloadCSVFromAnswers(answersObj, labels, filename = 'dotaznik_odpovedi.csv') {
-      var rows = [];
-      // hlavička
-      var header = ['timestamp'].concat(labels);
-      rows.push(header.map(h => '"' + String(h).replace(/"/g, '""') + '"').join(','));
-      // jeden řádek s aktuální odpovědí
-      var line = [new Date().toISOString()];
-      for (var i = 0; i < labels.length; i++) {
-        var v = answersObj[i] || '';
-        line.push('"' + String(v).replace(/"/g, '""') + '"');
-      }
-      rows.push(line.join(','));
-      var csvContent = rows.join('\r\n');
-      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
+    // ====== funkce: odeslat do PocketBase ======
+    // PocketBase REST API: POST /api/collections/{collection}/records
+    // Tělo requestu je JSON objekt odpovídající polím kolekce.
+    //
+    // Kolekce "dotaznik" musí mít tato pole (typ: text / plain text):
+    //   timestamp, q1, q2, q3, q4, q5, projekt
+    //
+    // Pokud máš kolekci s vypnutou autorizací (pravidla "allow create"),
+    // žádný token není potřeba. Jinak přidej Authorization hlavičku níže.
+    function submitToPocketBase(answersObj, labels) {
+      var endpoint = PB_URL + '/api/collections/' + PB_COLLECTION + '/records';
 
-    // ====== funkce: odeslat na Formspree ======
-    function submitToFormspree(answersObj, labels) {
-      if (!FORMSPREE_URL || FORMSPREE_URL.indexOf('YOUR_FORM_ID') !== -1) {
-        console.warn('Formspree URL není nastavena. Nahraď FORMSPREE_URL svým endpointem.');
-        return;
-      }
+      var payload = {
+        timestamp : new Date().toISOString(),
+        q1        : answersObj[0] || '',
+        q2        : answersObj[1] || '',
+        q3        : answersObj[2] || '',
+        q4        : answersObj[3] || '',
+        q5        : answersObj[4] || '',
+        projekt   : 'Průzkum ekonomika a informatika'
+      };
 
-      var fd = new FormData();
-      fd.append('timestamp', new Date().toISOString());
-      for (var i = 0; i < labels.length; i++) {
-        fd.append('q' + (i+1), answersObj[i] || '');
-        fd.append('q' + (i+1) + '_label', labels[i]);
-      }
-      fd.append('project', 'Průzkum ekonomika a informatika');
-
-      fetch(FORMSPREE_URL, {
-        method: 'POST',
-        body: fd,
-        headers: { 'Accept': 'application/json' }
+      fetch(endpoint, {
+        method  : 'POST',
+        headers : { 'Content-Type': 'application/json' },
+        body    : JSON.stringify(payload)
       })
       .then(function(response) {
-        if (response.ok) {
-          return response.json().catch(function(){ return { ok: true }; });
-        } else {
-          return response.json().then(function(j){ throw j; });
+        if (!response.ok) {
+          return response.json().then(function(err) { throw err; });
         }
+        return response.json();
       })
       .then(function(data) {
-        console.log('Odesláno na Formspree', data);
+        console.log('Odesláno do PocketBase, id záznamu:', data.id);
       })
       .catch(function(err) {
-        console.error('Chyba při odesílání na Formspree', err);
+        console.error('Chyba při odesílání do PocketBase:', err);
       });
     }
 
