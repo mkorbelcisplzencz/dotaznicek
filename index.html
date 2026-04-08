@@ -415,14 +415,13 @@
     function submitToPocketBase(answersObj, labels) {
       var endpoint = PB_URL + '/api/collections/' + PB_COLLECTION + '/records';
 
+      var answerJson = { timestamp: new Date().toISOString() };
+      labels.forEach(function(label, i) {
+        answerJson['q' + (i + 1)] = answersObj[i] || '';
+      });
+
       var payload = {
-        timestamp : new Date().toISOString(),
-        q1        : answersObj[0] || '',
-        q2        : answersObj[1] || '',
-        q3        : answersObj[2] || '',
-        q4        : answersObj[3] || '',
-        q5        : answersObj[4] || '',
-        projekt   : 'Průzkum ekonomika a informatika'
+        answer: answerJson
       };
 
       fetch(endpoint, {
