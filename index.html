@@ -212,18 +212,18 @@
 
   <header>
     <h1>Průzkum; průřezová práce z ekonomiky a informatiky</h1>
-    <p>5 otázek &mdash; vyberte jednu odpověď</p>
+    <p>10 otázek &mdash; vyberte jednu odpověď</p>
   </header>
 
   <div id="progress-wrap">
-    <div id="progress-label">Otázka <span id="prog-current">1</span> z 5</div>
+    <div id="progress-label">Otázka <span id="prog-current">1</span> z 10</div>
     <div id="progress-bar-bg"><div id="progress-bar-fill"></div></div>
   </div>
 
   <div id="survey-steps">
 
     <div class="step active" data-index="0">
-      <div class="step-number">Otázka 01 / 05</div>
+      <div class="step-number">Otázka 01 / 10</div>
       <div class="step-question">Jaký by byl váš preferovaný typ motoru ve vašem vozidle?</div>
       <div class="options">
         <div class="option" data-value="Elektro"><div class="option-letter">A</div><div class="option-text">Elektrický motor</div></div>
@@ -238,7 +238,7 @@
     </div>
 
     <div class="step" data-index="1">
-      <div class="step-number">Otázka 02 / 05</div>
+      <div class="step-number">Otázka 02 / 10</div>
       <div class="step-question">Odkud si nejraději dáváte kávu?</div>
       <div class="options">
         <div class="option" data-value="StrbCross"><div class="option-letter">A</div><div class="option-text">Starbucks nebo Crosscafe</div></div>
@@ -253,7 +253,7 @@
     </div>
 
     <div class="step" data-index="2">
-      <div class="step-number">Otázka 03 / 05</div>
+      <div class="step-number">Otázka 03 / 10</div>
       <div class="step-question">Jak přemýšlíte nad svými pracemi do školy?</div>
       <div class="options">
         <div class="option" data-value="Chatgpt"><div class="option-letter">A</div><div class="option-text">ChatGPT více než 50% informací + formulace</div></div>
@@ -268,7 +268,7 @@
     </div>
 
     <div class="step" data-index="3">
-      <div class="step-number">Otázka 04 / 05</div>
+      <div class="step-number">Otázka 04 / 10</div>
       <div class="step-question">Jaký je váš preferovaný operační systém?</div>
       <div class="options">
         <div class="option" data-value="Apple"><div class="option-letter">A</div><div class="option-text">MacOS/IOS</div></div>
@@ -283,12 +283,89 @@
     </div>
 
     <div class="step" data-index="4">
-      <div class="step-number">Otázka 05 / 05</div>
+      <div class="step-number">Otázka 05 / 10</div>
       <div class="step-question">Jak se vám líbí prostředí mimo Google Spyware?</div>
       <div class="options">
         <div class="option" data-value="Fuj"><div class="option-letter">A</div><div class="option-text">Nerdovská chujovina, fuj!</div></div>
         <div class="option" data-value="Super"><div class="option-letter">B</div><div class="option-text">Super! Zajímají mě má data.</div></div>
         <div class="option" data-value="Salam"><div class="option-letter">C</div><div class="option-text">Mam to na salámu ._.</div></div>
+      </div>
+      <div class="error-msg"></div>
+      <div class="nav-row">
+        <button class="btn-nav btn-back">← Zpět</button>
+        <button class="btn-nav primary btn-next">Další →</button>
+      </div>
+    </div>
+
+    <!-- ===== ŠABLONOVÉ OTÁZKY 6–10 — upravte dle potřeby ===== -->
+
+    <div class="step" data-index="5">
+      <div class="step-number">Otázka 06 / 10</div>
+      <div class="step-question">Šablona — zde napište otázku č. 6</div>
+      <div class="options">
+        <div class="option" data-value="Q6A"><div class="option-letter">A</div><div class="option-text">Odpověď A</div></div>
+        <div class="option" data-value="Q6B"><div class="option-letter">B</div><div class="option-text">Odpověď B</div></div>
+        <div class="option" data-value="Q6C"><div class="option-letter">C</div><div class="option-text">Odpověď C</div></div>
+      </div>
+      <div class="error-msg"></div>
+      <div class="nav-row">
+        <button class="btn-nav btn-back">← Zpět</button>
+        <button class="btn-nav primary btn-next">Další →</button>
+      </div>
+    </div>
+
+    <div class="step" data-index="6">
+      <div class="step-number">Otázka 07 / 10</div>
+      <div class="step-question">Šablona — zde napište otázku č. 7</div>
+      <div class="options">
+        <div class="option" data-value="Q7A"><div class="option-letter">A</div><div class="option-text">Odpověď A</div></div>
+        <div class="option" data-value="Q7B"><div class="option-letter">B</div><div class="option-text">Odpověď B</div></div>
+        <div class="option" data-value="Q7C"><div class="option-letter">C</div><div class="option-text">Odpověď C</div></div>
+      </div>
+      <div class="error-msg"></div>
+      <div class="nav-row">
+        <button class="btn-nav btn-back">← Zpět</button>
+        <button class="btn-nav primary btn-next">Další →</button>
+      </div>
+    </div>
+
+    <div class="step" data-index="7">
+      <div class="step-number">Otázka 08 / 10</div>
+      <div class="step-question">Šablona — zde napište otázku č. 8</div>
+      <div class="options">
+        <div class="option" data-value="Q8A"><div class="option-letter">A</div><div class="option-text">Odpověď A</div></div>
+        <div class="option" data-value="Q8B"><div class="option-letter">B</div><div class="option-text">Odpověď B</div></div>
+        <div class="option" data-value="Q8C"><div class="option-letter">C</div><div class="option-text">Odpověď C</div></div>
+      </div>
+      <div class="error-msg"></div>
+      <div class="nav-row">
+        <button class="btn-nav btn-back">← Zpět</button>
+        <button class="btn-nav primary btn-next">Další →</button>
+      </div>
+    </div>
+
+    <div class="step" data-index="8">
+      <div class="step-number">Otázka 09 / 10</div>
+      <div class="step-question">Šablona — zde napište otázku č. 9</div>
+      <div class="options">
+        <div class="option" data-value="Q9A"><div class="option-letter">A</div><div class="option-text">Odpověď A</div></div>
+        <div class="option" data-value="Q9B"><div class="option-letter">B</div><div class="option-text">Odpověď B</div></div>
+        <div class="option" data-value="Q9C"><div class="option-letter">C</div><div class="option-text">Odpověď C</div></div>
+      </div>
+      <div class="error-msg"></div>
+      <div class="nav-row">
+        <button class="btn-nav btn-back">← Zpět</button>
+        <button class="btn-nav primary btn-next">Další →</button>
+      </div>
+    </div>
+
+    <div class="step" data-index="9">
+      <div class="step-number">Otázka 10 / 10</div>
+      <div class="step-question">Šablona — zde napište otázku č. 10</div>
+      <div class="options">
+        <div class="option" data-value="Q10A"><div class="option-letter">A</div><div class="option-text">Odpověď A</div></div>
+        <div class="option" data-value="Q10B"><div class="option-letter">B</div><div class="option-text">Odpověď B</div></div>
+        <div class="option" data-value="Q10C"><div class="option-letter">C</div><div class="option-text">Odpověď C</div></div>
       </div>
       <div class="error-msg"></div>
       <div class="nav-row">
@@ -318,7 +395,12 @@
       "Kde dáváte kávu",
       "Jak pracujete na školních pracích",
       "Preferovaný operační systém",
-      "Názor na prostředí mimo Google"
+      "Názor na prostředí mimo Google",
+      "Šablona — otázka 6",
+      "Šablona — otázka 7",
+      "Šablona — otázka 8",
+      "Šablona — otázka 9",
+      "Šablona — otázka 10"
     ];
 
     var steps = document.querySelectorAll('.step');
